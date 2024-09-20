@@ -13,37 +13,12 @@ const images = [
   },
 ];
 
-// const makeImgFromObj = (images) => {
-//   for (const img of images) {
-//     const imgEl = document.createElement("img");
-//     imgEl.setAttribute("alt", img.alt);
-//     imgEl.setAttribute("url", img.url);
-//     const gallery = document.querySelector(".gallery");
-//     gallery.appendChild(imgEl);
-//     return imgEl
-//   }
-// };
+const gallery = document.querySelector(".gallery");
 
-// makeImgFromObj(images);
+const galleryMarkup = images
+  .map(({ url, alt }) => {
+    return `<li class="gallery-item"><img src="${url}" alt="${alt}" class="gallery-image" width='200px'></li>`;
+  })
+  .join("");
 
-// function makeImg(images) {
-//   for (const image of images) {
-//     const imgEl = `<img src='${image.url}' alt='${image.alt}' width='200px'>`;
-//     const liEl = `<li>${imgEl}</li>`;
-//     const ulEl = document.querySelector('.gallery')
-//     ulEl.insertAdjacentHTML('afterbegin', liEl)
-//   }
-// }
-
-// makeImg(images);
-
-const makeImgFromObj = (imagesObj) => {
-  for (const image of imagesObj) {
-    const imgEl = `<img src='${image.url}' alt='${image.alt}' width='200px'>`;
-    const liEl = `<li>${imgEl}</li>`;
-    const ulEl = document.querySelector(".gallery");
-    ulEl.insertAdjacentHTML("afterbegin", liEl);
-  }
-};
-
-makeImgFromObj(images);
+gallery.insertAdjacentHTML("beforeend", galleryMarkup);
